@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private bool gameEnded = false;
+    private static bool gameEnded = false;
 
     public GameObject gameOverUI;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gameEnded = false;
     }
 
     // Update is called once per frame
@@ -23,12 +23,6 @@ public class GameManager : MonoBehaviour
         }
         if (gameEnded)
             return;
-
-        /*if (Tower.targetWaypointIndex)
-        {
-            EndGame();
-        }
-    }*/
 
         void EndGame()
         {
