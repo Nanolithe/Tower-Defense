@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyDemo : MonoBehaviour
 {
     // todo #1 set up properties
-    public int enemyHealth = 3;
+    public int enemyHealth = 15;
     public float speed = 3f;
     private Camera mainCamera;
-    public int coins = 3;
+    public int coins = 50;
+    public Image healthBar;
 
     public List<Transform> waypointList;
 
@@ -75,20 +77,24 @@ public class EnemyDemo : MonoBehaviour
     {
         if (targetWaypointIndex == waypointList.Count - 1)
         {
+            Economy.Lives--;
             Destroy(gameObject);
             Debug.Log("Enemy has been obliterated ");
             return;
         }
-        targetWaypointIndex++; 
+        targetWaypointIndex++;
+        //transform.position = targetWaypointIndex;
     }
 
     public void TakeDamage(int damage)
     {
         enemyHealth -= damage;
+        healthBar.fillAmount = enemyHealth / 10f;
         if (enemyHealth <= 0)
         {
             //Destroy(gameObject);
             Death();
         }
     }
+    
 }
